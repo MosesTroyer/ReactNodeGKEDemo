@@ -1,0 +1,13 @@
+version: '3'
+
+# This is to make it easier to test the Docker container locally
+
+services:
+  myapp:
+    env_file:
+      - "server/.env"
+    build:
+      dockerfile: ./Dockerfile
+    image: "myname/myapp"
+    ports:
+      - "3008:3008"

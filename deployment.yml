@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gke-app-id-goes-here
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: gke-app-id-goes-here
+    spec:
+      containers:
+        - name: gke-app-id-goes-here
+          image: gcr.io/gke-app-id-goes-here/IMAGE:TAG
+          ports:
+            - containerPort: 3008
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 100m
