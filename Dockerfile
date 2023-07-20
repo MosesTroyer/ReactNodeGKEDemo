@@ -5,26 +5,21 @@ LABEL maintainer = ["you@example.com"]
 # Client / React
 WORKDIR /app/client
 
-COPY [ "client/package.json", "client/package-lock.json", "./" ]
+COPY [ "client/package.json", "client/package-lock.json", "client/tsconfig.json", "./" ]
 COPY client/public/ public
 COPY client/src/ src
 
 RUN npm install --omit-dev
-
-COPY ./client .
 
 RUN npm run build
 
 # Server / Node
 WORKDIR /app/server
 
-RUN dir -s
-
-COPY [ "server/package.json", "server/package-lock.json", "server/tsconfig.json", "./" ]
+COPY [ "server/package.json", "server/package-lock.json", "server/tsconfig.json", "server/.env", "./" ]
+COPY server/src/ src
 
 RUN npm install --omit-dev
-
-COPY ./server .
 
 RUN npx tsc
 
