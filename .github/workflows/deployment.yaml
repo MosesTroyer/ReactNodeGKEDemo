@@ -9,7 +9,6 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_ZONE: ${{ secrets.GKE_ZONE }}
-  DEPLOYMENT_NAME: production
   IMAGE: ${{ secrets.GKE_CLUSTER_NAME }}
 
 jobs:
